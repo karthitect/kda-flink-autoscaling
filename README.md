@@ -4,7 +4,7 @@ NOTE: This guidance (especially on target tracking scaling) is still a work in p
 ## Overview
 This sample is meant to help users auto-scale their [Kinesis Data Analytics for Java](https://aws.amazon.com/kinesis/data-analytics/) (KDA) applications using [AWS Application Autoscaling](https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html). KDA currently only supports CPU based autoscaling, and readers can use the guidance in this repo to scale their KDA applications based on other signals - such as operator throughput, for instance.
 
-We've included guidance for both [step scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html) and [target tracking scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html). For official documentation on AWS Application Autoscaling, please visit:
+We've included guidance for both [step scaling](https://github.com/karthitect/kda-flink-autoscaling/tree/master/step-scaling) and [target tracking scaling](https://github.com/karthitect/kda-flink-autoscaling/tree/master/targettracking-scaling). For official documentation on AWS Application Autoscaling, please visit:
 - [Step scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html)
 - [Target tracking scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
 
