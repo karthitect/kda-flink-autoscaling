@@ -18,5 +18,5 @@ You can review the Python code for the Lambda function [here](https://github.com
 ### Some caveats
 
 1. When scaling out/in, in this sample we only update the overall parallelism; we don't adjust parallelism/KPU.
-2. When scaling occurs, the KDA app experiences downtime. Please take this into consideration, when configuring the step scaling increments.
+2. When scaling occurs, the KDA app experiences downtime. Please take this into consideration when configuring the step scaling increments.
 3. Please keep in mind that the throughput of a Flink application is dependent on many factors (complexity of processing, destination throughput, etc...). This example assumes a simple relationship between incoming record throughput and scaling for demonstration purposes.
