@@ -1,5 +1,5 @@
 ## Step scaling
-The step scaling sample uses the incomingRecords metrics for the source Kinesis stream to proportionately configure the parallelism of the associated KDA application. The following subsections describe the key components behind the scaling approach
+The step scaling sample uses the incomingRecords metric for the source Kinesis stream to proportionately configure the parallelism of the associated KDA application. The following subsections describe the key components behind the scaling approach
 
 ### Application autoscaling of custom resource
 
