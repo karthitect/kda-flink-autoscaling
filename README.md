@@ -9,8 +9,7 @@ We've included guidance for both [step scaling](https://github.com/karthitect/kd
 - [Target tracking scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
 
 ## Why use Application Autoscaling?
-You may be wondering: "Why use Application Autoscaling; why not just trigger a Lambda function via a CloudWatch alarm and SNS?". The main reason is that Application Autoscaling has a well defined API for specifying scaling policies and associated attributes such as cooldown periods. In addition, we can take advantage of the various types of scaling types included with Application Autoscaling: step scaling, target tracking scaling, and schedule-based scaling (not covered in this doc).
-
+You may be wondering: "Why use Application Autoscaling; why not just trigger a Lambda function via a CloudWatch alarm and SNS?". The main reason is that Application Autoscaling has a well defined API for specifying scaling policies and associated attributes such as cooldown periods. In addition, we can take advantage of all three scaling types included with Application Autoscaling: step scaling, target tracking scaling, and schedule-based scaling (not covered in this doc).
 
 ## Step scaling
 The step scaling sample uses the incomingRecords metric for the source Kinesis stream to proportionately configure the parallelism of the associated KDA application. The following subsections describe the key components behind the scaling approach

@@ -66,7 +66,7 @@ Resources:
       Timeout: 10
       CodeUri: 
         Bucket: !Ref S3BucketLambda
-        Key: kdascalinglambda/index.zip        
+        Key: kdattscalinglambda/index.zip        
       Policies:
         - AWSCloudFormationReadOnlyAccess
         - Statement:
@@ -101,9 +101,6 @@ Resources:
           ParameterStore: !Ref KDADesiredCapacityParameter
           KDAAppName: !Ref KDAAppName
           KinesisStreamName: !Ref KinesisStreamName
-          CloudWatchAlarmNameIn: !Ref CloudWatchAlarmNameIn
-          CloudWatchAlarmNameOut: !Ref CloudWatchAlarmNameOut
-          MaxThroughputPerKPU: !Ref ThroughputPerKPU
           MaxKPUs: !Ref MaxKPUs
       Events:
         KinesisAPI:
@@ -175,7 +172,7 @@ Resources:
       Type: "String"
       Value: !Ref KDAParallelism
       Description: "Store DesiredCapacity in Parameter Store"
-      AllowedPattern: "[0-9]"
+      AllowedPattern: "[0-9]+"
 
   KDAScalableTarget:
     Type: AWS::ApplicationAutoScaling::ScalableTarget
@@ -206,17 +203,20 @@ Resources:
       ScalableDimension: "custom-resource:ResourceType:Property"
       ServiceNamespace: custom-resource
       TargetTrackingScalingPolicyConfiguration:
-        TargetValue: 0.0
+        TargetValue: 1
         ScaleInCooldown: 60
         ScaleOutCooldown: 60
         CustomizedMetricSpecification:
-          MetricName: MyAverageUtilizationMetric
-          Namespace: MetricNamespace
+          MetricName: millisBehindLatest
+          Namespace: AWS/KinesisAnalytics
           Dimensions:
-            Name: MyMetricDimensionName
-            Value: MyMetricDimensionValue
+          - Name: Id
+            Value: KDAScalingTestStream
+          - Name: Application
+            Value: kdascaling
+          - Name: Flow
+            Value: Input
           Statistic: Average
-          Unit: Percent
 
 Outputs:
   URL:
