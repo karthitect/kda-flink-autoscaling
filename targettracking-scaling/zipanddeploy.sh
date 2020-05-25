@@ -1,6 +1,6 @@
 #!/bin/bash
 
-S3_LOCATION=s3://ktohio
+S3_LOCATION=s3://[BUCKET_NAME]
 FILE_NAME=kdattscalinglambda/index.zip
 
 echo Zipping...
