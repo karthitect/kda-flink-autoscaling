@@ -11,9 +11,6 @@ We've included guidance for both [step scaling](https://github.com/karthitect/kd
 ## Why use Application Autoscaling?
 You may be wondering: "Why use Application Autoscaling; why not just trigger a Lambda function via a CloudWatch alarm and SNS?". The main reason is that Application Autoscaling has a well defined API for specifying scaling policies and associated attributes such as cooldown periods. In addition, we can take advantage of all three scaling types included with Application Autoscaling: step scaling, target tracking scaling, and schedule-based scaling (not covered in this doc).
 
-## Step scaling
-The step scaling sample uses the incomingRecords metric for the source Kinesis stream to proportionately configure the parallelism of the associated KDA application. The following subsections describe the key components behind the scaling approach
-
 ### Application autoscaling of custom resource
 
 Application autoscaling allows users to scale in/out custom resources by specifying a custom endpoint that can be invoked by Application Autoscaling. In this example, this custom endpoint is implemented using API Gateway and an AWS Lambda function. Here's a high level flow depicting this approach:
@@ -33,6 +30,3 @@ You can review the Python code for the Lambda function associated with step scal
 1. When scaling out/in, in this sample we only update the overall parallelism; we don't adjust parallelism/KPU.
 2. When scaling occurs, the KDA app experiences downtime. Please take this into consideration when configuring the step scaling increments.
 3. Please keep in mind that the throughput of a Flink application is dependent on many factors (complexity of processing, destination throughput, etc...). The step-scaling example assumes a simple relationship between incoming record throughput and scaling. And similarly millisBehindLatest for target-tracking autoscaling.
-
-## Target tracking scaling
-[In progress]
