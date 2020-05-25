@@ -1,7 +1,9 @@
 #!/bin/bash
 
-REGION=us-east-2
-STACK_NAME=kda-targettracking-scaling-stack1
+REGION=[AWS-REGION]
+STACK_NAME=[CFN-TTSCALING-STACKNAME]
+KDA_APP_NAME=[KDA-APP]
+KINESIS_STREAM_NAME=[KINESIS-STREAM]
 
 if ! aws cloudformation describe-stacks --region $REGION --stack-name $STACK_NAME ; then
 
@@ -11,7 +13,10 @@ if ! aws cloudformation describe-stacks --region $REGION --stack-name $STACK_NAM
     --stack-name $STACK_NAME \
     --on-failure DO_NOTHING \
     --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
-    --template-body file://targettracking-scaling.yaml
+    --template-body file://targettracking-scaling.yaml \
+    --parameters \
+      ParameterKey=KDAAppName,ParameterValue=$KDA_APP_NAME \
+      ParameterKey=KinesisStreamName,ParameterValue=$KINESIS_STREAM_NAME
 
 fi
 

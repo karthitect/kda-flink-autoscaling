@@ -26,13 +26,13 @@ The accompanying [CloudFormation template](https://github.com/karthitect/kda-fli
 ### Scaling logic
 When invoked by Application Autoscaling, the Lambda function (written in Python) will call [UpdateApplication](https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_UpdateApplication.html) with the desired capacity specified. In addition, it will also re-configure the alarm thresholds to take into account the current parallelism of the KDA application.
 
-You can review the Python code for the Lambda function [here](https://github.com/karthitect/kda-flink-autoscaling/blob/master/step-scaling/index.py).
+You can review the Python code for the Lambda function associated with step scaling [here](step-scaling/index.py) and for target tracking autoscaling [here](targettracking-scaling/index.py).
 
 ### Some caveats
 
 1. When scaling out/in, in this sample we only update the overall parallelism; we don't adjust parallelism/KPU.
 2. When scaling occurs, the KDA app experiences downtime. Please take this into consideration when configuring the step scaling increments.
-3. Please keep in mind that the throughput of a Flink application is dependent on many factors (complexity of processing, destination throughput, etc...). This example assumes a simple relationship between incoming record throughput and scaling for demonstration purposes.
+3. Please keep in mind that the throughput of a Flink application is dependent on many factors (complexity of processing, destination throughput, etc...). The step-scaling example assumes a simple relationship between incoming record throughput and scaling. And similarly millisBehindLatest for target-tracking autoscaling.
 
 ## Target tracking scaling
 [In progress]
